@@ -1,0 +1,301 @@
+<!-- Main Gallery Website Structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.0.0/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Add your custom styles here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        .swiper-container {
+            width: 90%;
+            height: 60vh;
+            margin: auto;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            background: #fff;
+        }
+        .memory-category {
+            display: none;
+            margin: 30px 0;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .hamburger-menu div {
+            width: 30px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        .nav-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+            padding-top: 60px;
+            z-index: 99;
+        }
+        .nav-menu a {
+            display: block;
+            color: #333;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .nav-menu a:hover {
+            background-color: #f0f0f0;
+        }
+        .year-navigation {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+        .year-navigation a {
+            margin-right: 15px;
+            font-size: 18px;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .year-navigation a:hover {
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <!-- Year Navigation -->
+    <div class="year-navigation">
+        <a href="#" onclick="setYear('2021')">2021</a>
+        <a href="#" onclick="setYear('2022')">2022</a>
+        <a href="#" onclick="setYear('2023')">2023</a>
+        <a href="#" onclick="setYear('2024')">2024</a>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+        <a href="#" onclick="showSection('concerts-gallery')">Our Concerts</a>
+        <a href="#" onclick="showSection('dinner-gallery')">Dinner Dates</a>
+        <a href="#" onclick="showSection('holidays-gallery')">Holidays</a>
+        <a href="#" onclick="showSection('trips-gallery')">Trips We've Taken</a>
+        <a href="#" onclick="showSection('celebrations-gallery')">Special Celebrations</a>
+        <a href="#" onclick="showSection('videos-gallery')">Fun Videos</a>
+        <a href="#" onclick="showSection('moments-gallery')">Favorite Moments</a>
+    </div>
+
+    <h1>Our Memories Together</h1>
+    <p>Explore all the wonderful moments we've shared. Swipe through the different categories of memories!</p>
+
+    <!-- Categories Section -->
+    <div class="memory-category" id="concerts-gallery">
+        <h2 class="title">Our Concerts</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="concerts-content">
+                <!-- Content will be dynamically updated based on the selected year -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="memory-category" id="dinner-gallery">
+        <h2 class="title">Dinner Dates</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="dinner-content">
+                <!-- Content will be dynamically updated based on the selected year -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="memory-category" id="holidays-gallery">
+        <h2 class="title">Holidays</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="holidays-content">
+                <!-- Content will be dynamically updated based on the selected year -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="memory-category" id="trips-gallery">
+        <h2 class="title">Trips We've Taken</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="trips-content">
+                <!-- Content will be dynamically updated based on the selected year -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="memory-category" id="celebrations-gallery">
+        <h2 class="title">Our Special Celebrations</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="celebrations-content">
+                <!-- Content will be dynamically updated based on the selected year -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="memory-category" id="videos-gallery">
+        <h2 class="title">Fun Videos Together</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="videos-content">
+                <!-- Content will be dynamically updated based on the selected year -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="memory-category" id="moments-gallery">
+        <h2 class="title">Our Favorite Moments</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="moments-content">
+                <!-- Content will be dynamically updated based on the selected year -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.0.0/swiper-bundle.min.js"></script>
+    <script>
+        let currentYear = '2021';
+
+        const initSwiper = (containerId) => {
+            new Swiper(`#${containerId} .swiper-container`, {
+                navigation: {
+                    nextEl: `#${containerId} .swiper-button-next`,
+                    prevEl: `#${containerId} .swiper-button-prev`,
+                },
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        };
+        initSwiper('concerts-gallery');
+        initSwiper('dinner-gallery');
+        initSwiper('holidays-gallery');
+        initSwiper('trips-gallery');
+        initSwiper('celebrations-gallery');
+        initSwiper('videos-gallery');
+        initSwiper('moments-gallery');
+
+        // Hamburger Menu Toggle Function
+        const toggleMenu = () => {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
+        };
+
+        // Show Section Function
+        const showSection = (sectionId) => {
+            const sections = document.querySelectorAll('.memory-category');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+            toggleMenu();
+        };
+
+        // Set Year Function
+        const setYear = (year) => {
+            currentYear = year;
+            updateContent();
+        };
+
+        // Update Content Based on Year
+        const updateContent = () => {
+            document.getElementById('concerts-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/concert1.jpg" alt="Concert Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/concert2.jpg" alt="Concert Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/concert3.jpg" alt="Concert Image 3"></div>`;
+
+            document.getElementById('dinner-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/dinner1.jpg" alt="Dinner Date Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/dinner2.jpg" alt="Dinner Date Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/dinner3.jpg" alt="Dinner Date Image 3"></div>`;
+
+            document.getElementById('holidays-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/holiday1.jpg" alt="Holiday Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/holiday2.jpg" alt="Holiday Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/holiday3.jpg" alt="Holiday Image 3"></div>`;
+
+            document.getElementById('trips-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/trip1.jpg" alt="Trip Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/trip2.jpg" alt="Trip Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/trip3.jpg" alt="Trip Image 3"></div>`;
+
+            document.getElementById('celebrations-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/celebration1.jpg" alt="Celebration Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/celebration2.jpg" alt="Celebration Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/celebration3.jpg" alt="Celebration Image 3"></div>`;
+
+            document.getElementById('videos-content').innerHTML = `<div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>`;
+
+            document.getElementById('moments-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/moment1.jpg" alt="Moment Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/moment2.jpg" alt="Moment Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/moment3.jpg" alt="Moment Image 3"></div>`;
+        };
+
+        // Show the first section and set the default year content
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('trips-gallery');
+            setYear('2024');
+        });
+    </script>
+</body>
+</html>
