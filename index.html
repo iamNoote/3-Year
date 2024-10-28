@@ -114,8 +114,7 @@
 
     <!-- Navigation Menu -->
     <div class="nav-menu" id="navMenu">
-        <a href="#" onclick="showSection('concerts-gallery')">Our Concerts</a>
-        <a href="#" onclick="showSection('dinner-gallery')">Dinner Dates</a>
+                <a href="#" onclick="showSection('dinner-gallery')">Dinner Dates</a>
         <a href="#" onclick="showSection('holidays-gallery')">Holidays</a>
         <a href="#" onclick="showSection('adventures-gallery')">Adventures</a>
         <a href="#" onclick="showSection('celebrations-gallery')">Special Celebrations</a>
@@ -127,18 +126,7 @@
     <p>Explore all the wonderful moments we've shared. Swipe through the different categories of memories!</p>
 
     <!-- Categories Section -->
-    <div class="memory-category" id="concerts-gallery">
-        <h2 class="title">Our Concerts</h2>
-        <div class="swiper-container">
-            <div class="swiper-wrapper" id="concerts-content">
-                <!-- Content will be dynamically updated based on the selected year -->
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </div>
-
-    <div class="memory-category" id="dinner-gallery">
+        <div class="memory-category" id="dinner-gallery">
         <h2 class="title">Dinner Dates</h2>
         <div class="swiper-container">
             <div class="swiper-wrapper" id="dinner-content">
@@ -222,8 +210,7 @@
                 },
             });
         };
-        initSwiper('concerts-gallery');
-        initSwiper('dinner-gallery');
+                initSwiper('dinner-gallery');
         initSwiper('holidays-gallery');
         initSwiper('adventures-gallery');
         initSwiper('celebrations-gallery');
@@ -261,10 +248,7 @@
 
         // Update Content Based on Year
         const updateContent = () => {
-            document.getElementById('concerts-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/concert1.jpg" alt="Concert Image 1"></div>
-                <div class="swiper-slide"><img src="images/${currentYear}/concert2.jpg" alt="Concert Image 2"></div>
-                <div class="swiper-slide"><img src="images/${currentYear}/concert3.jpg" alt="Concert Image 3"></div>`;
-
+            
             document.getElementById('dinner-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/dinner1.jpg" alt="Dinner Date Image 1"></div>
                 <div class="swiper-slide"><img src="images/${currentYear}/dinner2.jpg" alt="Dinner Date Image 2"></div>
                 <div class="swiper-slide"><img src="images/${currentYear}/dinner3.jpg" alt="Dinner Date Image 3"></div>`;
