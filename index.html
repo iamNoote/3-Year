@@ -114,7 +114,7 @@
 
     <!-- Navigation Menu -->
     <div class="nav-menu" id="navMenu">
-        <a href="#" onclick="showSection('dinner-gallery')">Dinner Dates</a>
+                <a href="#" onclick="showSection('dinner-gallery')">Dinner Dates</a>
         <a href="#" onclick="showSection('holidays-gallery')">Holidays</a>
         <a href="#" onclick="showSection('adventures-gallery')">Adventures</a>
         <a href="#" onclick="showSection('celebrations-gallery')">Special Celebrations</a>
@@ -126,7 +126,7 @@
     <p>These are most of my favorite memories with you that I have on my phone. I really hope you like having our own lil scrapbook of memories :)</p>
 
     <!-- Categories Section -->
-    <div class="memory-category" id="dinner-gallery">
+        <div class="memory-category" id="dinner-gallery">
         <h2 class="title">Dinner Dates</h2>
         <div class="swiper-container">
             <div class="swiper-wrapper" id="dinner-content">
@@ -210,7 +210,7 @@
                 },
             });
         };
-        initSwiper('dinner-gallery');
+                initSwiper('dinner-gallery');
         initSwiper('holidays-gallery');
         initSwiper('adventures-gallery');
         initSwiper('celebrations-gallery');
@@ -248,8 +248,52 @@
 
         // Update Content Based on Year
         const updateContent = () => {
-            if (currentYear === '2021') {
-                document.getElementById('adventures-content').innerHTML = `<div class="swiper-slide"><img src="images/2021/adventure1.jpg" alt="Adventure Image 1"></div>`;
-                document.getElementById('holidays-content').innerHTML = `<div class="swiper-slide"><img src="images/2021/holiday1.jpg" alt="Holiday Image 1"></div>`;
-                document.getElementById('moments-content').innerHTML = `<div class="swiper-slide"><img src="images/2021/moment1.jpg" alt="Moment Image 1"></div>
-                    <div class="swiper-slide"><img src="images/2021/moment2.jpg" alt="Moment Image 2"></div>
+            
+            document.getElementById('dinner-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/dinner1.jpeg" alt="Dinner Date Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/dinner2.jpeg" alt="Dinner Date Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/dinner3.jpeg" alt="Dinner Date Image 3"></div>`;
+
+            document.getElementById('holidays-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/holiday1.jpeg" alt="Holiday Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/holiday2.jpeg" alt="Holiday Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/holiday3.jpeg" alt="Holiday Image 3"></div>`;
+
+            document.getElementById('adventures-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/adventure1.jpeg" alt="Adventure Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/adventure2.jpeg" alt="Adventure Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/adventure3.jpeg" alt="Adventure Image 3"></div>`;
+
+            document.getElementById('celebrations-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/celebration1.jpeg" alt="Celebration Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/celebration2.jpeg" alt="Celebration Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/celebration3.jpeg" alt="Celebration Image 3"></div>`;
+
+            document.getElementById('videos-content').innerHTML = `<div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>`;
+
+            document.getElementById('moments-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/moment1.jpeg" alt="Moment Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/moment2.jpeg" alt="Moment Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/moment3.jpeg" alt="Moment Image 3"></div>`;
+        };
+
+        // Show the first section and set the default year content
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('adventures-gallery');
+            setYear('2024');
+        });
+    </script>
+</body>
+</html>
