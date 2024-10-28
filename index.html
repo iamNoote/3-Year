@@ -16,7 +16,7 @@
         }
         .swiper-container {
             width: 90%;
-            height: 80vh;
+            height: 60vh;
             margin: auto;
             border-radius: 15px;
             overflow: hidden;
@@ -27,11 +27,6 @@
             align-items: center;
             font-size: 18px;
             background: #fff;
-        }
-        .swiper-slide img, .swiper-slide video {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: cover;
         }
         .memory-category {
             display: none;
@@ -117,13 +112,13 @@
         <a href="#" onclick="showSection('concerts-gallery')">Our Concerts</a>
         <a href="#" onclick="showSection('dinner-gallery')">Dinner Dates</a>
         <a href="#" onclick="showSection('holidays-gallery')">Holidays</a>
-        <a href="#" onclick="showSection('adventures-gallery')">Adventures</a>
+        <a href="#" onclick="showSection('trips-gallery')">Trips We've Taken</a>
         <a href="#" onclick="showSection('celebrations-gallery')">Special Celebrations</a>
         <a href="#" onclick="showSection('videos-gallery')">Fun Videos</a>
         <a href="#" onclick="showSection('moments-gallery')">Favorite Moments</a>
     </div>
 
-    <h1>Our Memories Together</h1>
+    <h1>Our Memories Together  - MAKE HANGMAN GAME FOR HINTS ON WHERE TO GO/GIFTS</h1>
     <p>Explore all the wonderful moments we've shared. Swipe through the different categories of memories!</p>
 
     <!-- Categories Section -->
@@ -160,10 +155,10 @@
         </div>
     </div>
 
-    <div class="memory-category" id="adventures-gallery">
-        <h2 class="title">Adventures</h2>
+    <div class="memory-category" id="trips-gallery">
+        <h2 class="title">Trips We've Taken</h2>
         <div class="swiper-container">
-            <div class="swiper-wrapper" id="adventures-content">
+            <div class="swiper-wrapper" id="trips-content">
                 <!-- Content will be dynamically updated based on the selected year -->
             </div>
             <div class="swiper-button-next"></div>
@@ -210,10 +205,10 @@
         let currentYear = '2021';
 
         const initSwiper = (containerId) => {
-            new Swiper(`#${containerId} .swiper-container`, {
+            new Swiper(#${containerId} .swiper-container, {
                 navigation: {
-                    nextEl: `#${containerId} .swiper-button-next`,
-                    prevEl: `#${containerId} .swiper-button-prev`,
+                    nextEl: #${containerId} .swiper-button-next,
+                    prevEl: #${containerId} .swiper-button-prev,
                 },
                 loop: true,
                 pagination: {
@@ -225,7 +220,7 @@
         initSwiper('concerts-gallery');
         initSwiper('dinner-gallery');
         initSwiper('holidays-gallery');
-        initSwiper('adventures-gallery');
+        initSwiper('trips-gallery');
         initSwiper('celebrations-gallery');
         initSwiper('videos-gallery');
         initSwiper('moments-gallery');
@@ -235,15 +230,6 @@
             const navMenu = document.getElementById('navMenu');
             navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
         };
-
-        // Close Hamburger Menu when Clicking Outside
-        document.addEventListener('click', (event) => {
-            const navMenu = document.getElementById('navMenu');
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            if (navMenu.style.display === 'block' && !navMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-                navMenu.style.display = 'none';
-            }
-        });
 
         // Show Section Function
         const showSection = (sectionId) => {
@@ -261,4 +247,55 @@
 
         // Update Content Based on Year
         const updateContent = () => {
-            document.getElementById('concerts-content').innerHTML = `<div class="swiper-slide"><img src="images/${currentYear}/concert1.jpg" alt="Concert Image
+            document.getElementById('concerts-content').innerHTML = <div class="swiper-slide"><img src="images/${currentYear}/concert1.jpg" alt="Concert Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/concert2.jpg" alt="Concert Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/concert3.jpg" alt="Concert Image 3"></div>;
+
+            document.getElementById('dinner-content').innerHTML = <div class="swiper-slide"><img src="images/${currentYear}/dinner1.jpg" alt="Dinner Date Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/dinner2.jpg" alt="Dinner Date Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/dinner3.jpg" alt="Dinner Date Image 3"></div>;
+
+            document.getElementById('holidays-content').innerHTML = <div class="swiper-slide"><img src="images/${currentYear}/holiday1.jpg" alt="Holiday Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/holiday2.jpg" alt="Holiday Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/holiday3.jpg" alt="Holiday Image 3"></div>;
+
+            document.getElementById('trips-content').innerHTML = <div class="swiper-slide"><img src="images/${currentYear}/trip1.jpeg" alt="Trip Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/trip2.jpg" alt="Trip Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/trip3.jpg" alt="Trip Image 3"></div>;
+
+            document.getElementById('celebrations-content').innerHTML = <div class="swiper-slide"><img src="images/${currentYear}/celebration1.jpg" alt="Celebration Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/celebration2.jpg" alt="Celebration Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/celebration3.jpg" alt="Celebration Image 3"></div>;
+
+            document.getElementById('videos-content').innerHTML = <div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="swiper-slide">
+                    <video controls width="80%">
+                        <source src="videos/${currentYear}/video3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>;
+
+            document.getElementById('moments-content').innerHTML = <div class="swiper-slide"><img src="images/${currentYear}/moment1.jpg" alt="Moment Image 1"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/moment2.jpg" alt="Moment Image 2"></div>
+                <div class="swiper-slide"><img src="images/${currentYear}/moment3.jpg" alt="Moment Image 3"></div>;
+        };
+
+        // Show the first section and set the default year content
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('trips-gallery');
+            setYear('2024');
+        });
+    </script>
+</body>
+</html>
