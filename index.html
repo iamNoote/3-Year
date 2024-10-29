@@ -94,6 +94,11 @@
         .year-navigation a:hover {
             color: #007BFF;
         }
+        .highlight {
+            font-weight: bold;
+            color: #007BFF;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -280,7 +285,18 @@
         const setYear = (year) => {
             currentYear = year;
             updateContent();
+
+            // Remove highlight from all year links
+            const yearLinks = document.querySelectorAll('.year-navigation a');
+            yearLinks.forEach(link => link.classList.remove('highlight'));
+
+            // Add highlight to the selected year link
+            const selectedLink = document.querySelector(`.year-navigation a[onclick="setYear('${year}')"]`);
+            if (selectedLink) {
+                selectedLink.classList.add('highlight');
+            }
         };
+
 
         // Toggle Pink Mode
         let isPinkMode = false;
