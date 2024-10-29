@@ -120,6 +120,7 @@
         <a href="#" onclick="showSection('celebrations-gallery')">Special Celebrations</a>
         <a href="#" onclick="showSection('videos-gallery')">Fun Videos</a>
         <a href="#" onclick="showSection('moments-gallery')">Favorite Moments</a>
+        <a href='#' onclick="togglePinkMode()">Pink Mode</a>
     </div>
 
     <h1>Our Memories Together</h1>
@@ -279,6 +280,13 @@
         const setYear = (year) => {
             currentYear = year;
             updateContent();
+        };
+
+        // Toggle Pink Mode
+        let isPinkMode = false;
+        const togglePinkMode = () => {
+            isPinkMode = !isPinkMode;
+            document.body.style.backgroundColor = isPinkMode ? 'lightpink' : '#f0f0f0';
         };
 
         // Update Content Based on Year
