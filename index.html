@@ -41,6 +41,10 @@
             font-size: 24px;
             margin-bottom: 10px;
         }
+        .counter {
+            margin-top: 10px;
+            font-size: 16px;
+        }
         /* Hamburger Menu Styles */
         .hamburger-menu {
             position: absolute;
@@ -123,7 +127,7 @@
     </div>
 
     <h1>Our Memories Together</h1>
-    <p>I hope you enjoy our own lil scrapbook I made of some of my favorite memories I have on my phone. I love you so much :)</p>
+    <p>Explore all the wonderful moments we've shared. Swipe through the different categories of memories!</p>
 
     <!-- Categories Section -->
     <div class="memory-category" id="dinner-gallery">
@@ -135,6 +139,7 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
+        <div class="counter" id="dinner-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="holidays-gallery">
@@ -146,6 +151,7 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
+        <div class="counter" id="holidays-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="adventures-gallery">
@@ -157,6 +163,7 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
+        <div class="counter" id="adventures-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="celebrations-gallery">
@@ -168,6 +175,7 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
+        <div class="counter" id="celebrations-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="videos-gallery">
@@ -179,6 +187,7 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
+        <div class="counter" id="videos-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="moments-gallery">
@@ -190,6 +199,7 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
+        <div class="counter" id="moments-counter">1/1</div>
     </div>
 
     <!-- Swiper JS -->
@@ -233,7 +243,7 @@
         };
 
         const initSwiper = (containerId) => {
-            new Swiper(`#${containerId} .swiper-container`, {
+            const swiper = new Swiper(`#${containerId} .swiper-container`, {
                 navigation: {
                     nextEl: `#${containerId} .swiper-button-next`,
                     prevEl: `#${containerId} .swiper-button-prev`,
@@ -243,101 +253,16 @@
                     el: '.swiper-pagination',
                     clickable: true,
                 },
+                on: {
+                    slideChange: function () {
+                        updateCounter(containerId, this.realIndex + 1, this.slides.length - 2);
+                    }
+                }
             });
-        };
-        initSwiper('dinner-gallery');
-        initSwiper('holidays-gallery');
-        initSwiper('adventures-gallery');
-        initSwiper('celebrations-gallery');
-        initSwiper('videos-gallery');
-        initSwiper('moments-gallery');
-
-        // Hamburger Menu Toggle Function
-        const toggleMenu = () => {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
+            updateCounter(containerId, 1, swiper.slides.length - 2);
         };
 
-        // Close Hamburger Menu when Clicking Outside
-        document.addEventListener('click', (event) => {
-            const navMenu = document.getElementById('navMenu');
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            if (navMenu.style.display === 'block' && !navMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-                navMenu.style.display = 'none';
-            }
-        });
-
-        // Show Section Function
-        const showSection = (sectionId) => {
-            const sections = document.querySelectorAll('.memory-category');
-            sections.forEach(section => section.style.display = 'none');
-            document.getElementById(sectionId).style.display = 'block';
-            toggleMenu();
+        const updateCounter = (containerId, current, total) => {
+            const counterElement = document.getElementById(`${containerId}-counter`);
+            counterElement.innerHTML = `${current}/${total}`;
         };
-
-        // Set Year Function
-        const setYear = (year) => {
-            currentYear = year;
-            updateContent();
-        };
-
-        // Update Content Based on Year
-        const updateContent = () => {
-            const yearData = contentData[currentYear];
-
-            // Adventures Content
-            let adventuresContent = '';
-            for (let i = 1; i <= yearData['adventures']; i++) {
-                adventuresContent += `<div class="swiper-slide"><img src="images/${currentYear}/adventure${i}.jpeg" alt="Adventure Image ${i}"></div>`;
-            }
-            document.getElementById('adventures-content').innerHTML = adventuresContent;
-
-            // Holidays Content
-            let holidaysContent = '';
-            for (let i = 1; i <= yearData['holidays']; i++) {
-                holidaysContent += `<div class="swiper-slide"><img src="images/${currentYear}/holiday${i}.jpeg" alt="Holiday Image ${i}"></div>`;
-            }
-            document.getElementById('holidays-content').innerHTML = holidaysContent;
-
-            // Dinner Content
-            let dinnerContent = '';
-            for (let i = 1; i <= yearData['dinner']; i++) {
-                dinnerContent += `<div class="swiper-slide"><img src="images/${currentYear}/dinner${i}.jpeg" alt="Dinner Date Image ${i}"></div>`;
-            }
-            document.getElementById('dinner-content').innerHTML = dinnerContent;
-
-            // Celebrations Content
-            let celebrationsContent = '';
-            for (let i = 1; i <= yearData['celebrations']; i++) {
-                celebrationsContent += `<div class="swiper-slide"><img src="images/${currentYear}/celebration${i}.jpeg" alt="Celebration Image ${i}"></div>`;
-            }
-            document.getElementById('celebrations-content').innerHTML = celebrationsContent;
-
-            // Videos Content
-            let videosContent = '';
-            for (let i = 1; i <= yearData['videos']; i++) {
-                videosContent += `<div class="swiper-slide">
-                    <video controls width="80%">
-                        <source src="videos/${currentYear}/video${i}.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>`;
-            }
-            document.getElementById('videos-content').innerHTML = videosContent;
-
-            // Moments Content
-            let momentsContent = '';
-            for (let i = 1; i <= yearData['moments']; i++) {
-                momentsContent += `<div class="swiper-slide"><img src="images/${currentYear}/moment${i}.jpeg" alt="Moment Image ${i}"></div>`;
-            }
-            document.getElementById('moments-content').innerHTML = momentsContent;
-        };
-
-        // Show the first section and set the default year content
-        document.addEventListener('DOMContentLoaded', () => {
-            showSection('adventures-gallery');
-            setYear('2024');
-        });
-    </script>
-</body>
-</html>
