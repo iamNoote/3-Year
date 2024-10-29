@@ -117,8 +117,7 @@
     </div>
 
     <!-- Navigation Menu -->
-    
-        <a href="#" onclick="togglePinkMode()" style="font-weight: bold;">Pink Mode</a>
+    <div class="nav-menu" id="navMenu">
         <a href="#" onclick="showSection('dinner-gallery')">Dinner Dates</a>
         <a href="#" onclick="showSection('holidays-gallery')">Holidays</a>
         <a href="#" onclick="showSection('adventures-gallery')">Adventures</a>
@@ -300,12 +299,12 @@
         };
 
         // Toggle Pink Mode
-        
-            pinkModeEnabled = !pinkModeEnabled;
-            document.body.classList.toggle('pink-mode', pinkModeEnabled);
+        
+        const togglePinkMode = () => {
             pinkModeEnabled = !pinkModeEnabled;
             document.body.classList.toggle('pink-mode', pinkModeEnabled);
         };
+
 
         // Update Content Based on Year
         const updateContent = () => {
