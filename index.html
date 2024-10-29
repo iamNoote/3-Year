@@ -255,11 +255,11 @@
                 },
                 on: {
                     slideChange: function () {
-                        updateCounter(containerId, this.realIndex + 1, this.slides.length);
+                        updateCounter(containerId, this.realIndex + 1, this.slides.length - 2);
                     }
                 }
             });
-            updateCounter(containerId, 1, swiper.slides.length);
+            updateCounter(containerId, 1, swiper.slides.length - 2);
         };
 
         const updateCounter = (containerId, current, total) => {
