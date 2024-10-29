@@ -94,10 +94,6 @@
         .year-navigation a:hover {
             color: #007BFF;
         }
-        .pink-mode {
-            background-color: #ffe6f0;
-            color: #000;
-        }
     </style>
 </head>
 <body>
@@ -128,7 +124,7 @@
     </div>
 
     <h1>Our Memories Together</h1>
-    <p>Explore all the wonderful moments we've shared. Swipe through the different categories of memories!</p>
+    <p>I hope you enjoy our own lil scrapbook I made of some of my favorite memories I have on my phone. I love you so much :)</p>
 
     <!-- Categories Section -->
     <div class="memory-category" id="dinner-gallery">
@@ -140,7 +136,6 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <div class="counter" id="dinner-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="holidays-gallery">
@@ -152,7 +147,6 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <div class="counter" id="holidays-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="adventures-gallery">
@@ -164,7 +158,6 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <div class="counter" id="adventures-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="celebrations-gallery">
@@ -176,7 +169,6 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <div class="counter" id="celebrations-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="videos-gallery">
@@ -188,7 +180,6 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <div class="counter" id="videos-counter">1/1</div>
     </div>
 
     <div class="memory-category" id="moments-gallery">
@@ -200,14 +191,12 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <div class="counter" id="moments-counter">1/1</div>
     </div>
 
     <!-- Swiper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.0.0/swiper-bundle.min.js"></script>
     <script>
         let currentYear = '2021';
-        let pinkModeEnabled = false;
 
         const contentData = {
             '2021': {
@@ -245,29 +234,24 @@
         };
 
         const initSwiper = (containerId) => {
-            const swiper = new Swiper(`#${containerId} .swiper-container`, {
+            new Swiper(`#${containerId} .swiper-container`, {
                 navigation: {
                     nextEl: `#${containerId} .swiper-button-next`,
                     prevEl: `#${containerId} .swiper-button-prev`,
                 },
-                loop: false,
+                loop: true,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
                 },
-                on: {
-                    slideChange: function () {
-                        updateCounter(containerId, this.realIndex + 1, this.slides.length - 2);
-                    }
-                }
             });
-            updateCounter(containerId, 1, swiper.slides.length - 2);
         };
-
-        const updateCounter = (containerId, current, total) => {
-            const counterElement = document.getElementById(`${containerId}-counter`);
-            counterElement.innerHTML = `${current}/${total}`;
-        };
+        initSwiper('dinner-gallery');
+        initSwiper('holidays-gallery');
+        initSwiper('adventures-gallery');
+        initSwiper('celebrations-gallery');
+        initSwiper('videos-gallery');
+        initSwiper('moments-gallery');
 
         // Hamburger Menu Toggle Function
         const toggleMenu = () => {
@@ -304,7 +288,6 @@
             pinkModeEnabled = !pinkModeEnabled;
             document.body.classList.toggle('pink-mode', pinkModeEnabled);
         };
-
 
         // Update Content Based on Year
         const updateContent = () => {
@@ -356,14 +339,6 @@
                 momentsContent += `<div class="swiper-slide"><img src="images/${currentYear}/moment${i}.jpeg" alt="Moment Image ${i}"></div>`;
             }
             document.getElementById('moments-content').innerHTML = momentsContent;
-
-            // Initialize Swipers again after updating content
-            initSwiper('dinner-gallery');
-            initSwiper('holidays-gallery');
-            initSwiper('adventures-gallery');
-            initSwiper('celebrations-gallery');
-            initSwiper('videos-gallery');
-            initSwiper('moments-gallery');
         };
 
         // Show the first section and set the default year content
