@@ -47,6 +47,9 @@
         .incorrect {
             color: red;
         }
+        .correct {
+            color: green;
+        }
     </style>
 </head>
 <body>
@@ -59,7 +62,7 @@
     <script>
         // Secret word and hidden message
         const secretWord = "Cheesecake, Longhorn, Bravos, Firebirds?";
-        const hiddenMessage = "Congratulations! You've unlocked the hidden message!";
+        const hiddenMessage = "Congratulations! You've unlocked the hidden message: Where does my baby want to go?";
 
         let guessedLetters = [];
         let incorrectGuesses = 0;
@@ -107,6 +110,7 @@
             guessedLetters.push(letter);
 
             if (secretWord.toUpperCase().includes(letter)) {
+                button.classList.add("correct");
                 wordElement.textContent = getDisplayedWord();
                 checkWin();
             } else {
