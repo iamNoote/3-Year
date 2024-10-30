@@ -110,6 +110,7 @@
             guessedLetters.push(letter);
 
             if (secretWord.toUpperCase().includes(letter)) {
+                button.classList.add("correct");
                 wordElement.textContent = getDisplayedWord();
                 checkWin();
             } else {
