@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        #word {
+            font-size: 2em;
+            letter-spacing: 10px;
+            margin: 20px;
+        }
+        #message {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: green;
+        }
+        #letters {
+            margin-top: 20px;
+        }
+        #lives {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #333;
+        }
+        .letter {
+            margin: 5px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border: 1px solid #000;
+            padding: 10px;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hangman - Gift 1</h1>
+    <div id="word"></div>
+    <div id="lives">Lives remaining: 6</div>
+    <div id="letters"></div>
+    <div id="message"></div>
+
+    <script>
+        // Secret word and hidden message
+        const secretWord = "Bunny";
+        const hiddenMessage = "Congratulations! You've unlocked the hidden message!";
+
+        let guessedLetters = [];
+        let incorrectGuesses = 0;
+        const maxGuesses = 6;
+
+        const wordElement = document.getElementById("word");
+        const messageElement = document.getElementById("message");
+        const lettersElement = document.getElementById("letters");
+        const livesElement = document.getElementById("lives");
+
+        function initializeGame() {
+            // Display the word with underscores
+            wordElement.textContent = getDisplayedWord();
+
+            // Create letter buttons
+            for (let i = 65; i <= 90; i++) {
+                const letter = String.fromCharCode(i);
+                const button = document.createElement("span");
+                button.textContent = letter;
+                button.classList.add("letter");
+                button.onclick = () => guessLetter(letter, button);
+                lettersElement.appendChild(button);
+            }
+        }
+
+        function getDisplayedWord() {
+            let display = "";
+            for (let char of secretWord) {
+                if (char.match(/[a-zA-Z]/) && guessedLetters.includes(char.toUpperCase())) {
+                    display += char + " ";
+                } else if (!char.match(/[a-zA-Z]/)) {
+                    display += char + " ";
+                } else {
+                    display += "_ ";
+                }
+            }
+            return display.trim();
+        }
+
+        function guessLetter(letter, button) {
+            if (guessedLetters.includes(letter)) {
+                return; // Already guessed
+            }
+
+            guessedLetters.push(letter);
+
+            if (secretWord.toUpperCase().includes(letter)) {
+                wordElement.textContent = getDisplayedWord();
+                checkWin();
+            } else {
+                incorrectGuesses++;
+                button.classList.add("incorrect");
+                livesElement.textContent = `Lives remaining: ${maxGuesses - incorrectGuesses}`;
+                if (incorrectGuesses >= maxGuesses) {
+                    messageElement.textContent = "Game Over! Click here to retry.";
+                    messageElement.style.color = "red";
+                    disableAllLetters();
+                    messageElement.onclick = () => location.reload();
+                }
+            }
+        }
+
+        function checkWin() {
+            if (!getDisplayedWord().includes("_")) {
+                messageElement.textContent = hiddenMessage;
+                disableAllLetters();
+            }
+        }
+
+        function disableAllLetters() {
+            const buttons = document.querySelectorAll(".letter");
+            buttons.forEach(button => button.onclick = null);
+        }
+
+        initializeGame();
+    </script>
+</body>
+</html>
