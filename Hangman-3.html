@@ -47,6 +47,9 @@
         .incorrect {
             color: red;
         }
+        .correct {
+            color: green;
+        }
     </style>
 </head>
 <body>
@@ -107,6 +110,7 @@
             guessedLetters.push(letter);
 
             if (secretWord.toUpperCase().includes(letter)) {
+                button.classList.add("correct");
                 wordElement.textContent = getDisplayedWord();
                 checkWin();
             } else {
